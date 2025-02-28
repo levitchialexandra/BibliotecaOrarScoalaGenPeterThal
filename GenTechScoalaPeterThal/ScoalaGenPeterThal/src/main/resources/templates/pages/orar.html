@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/orar.css" />
+    <script defer src="/assets/js/orar.js"></script>
+  </head>
+
+  <body>
+    <!-- Loader-ul navbar-ului  -->
+    <div id="navbar-container"></div>
+
+    <div class="main-container">
+      <div class="banner-intro">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <img
+              src="/assets/images/Ilustratie-copii.png"
+              class="banner-imagine col-md-4 col-xs-6"
+            />
+            <div
+              class="banner-text col-md-8 col-xs-6"
+              th:if="${#lists.isEmpty(orar)}"
+            >
+              <h2>Orarul școlar</h2>
+              <p>
+                Pentru a asigura o organizare eficientă și o informare corectă,
+                am pus la dispoziția elevilor și părinților orarele actualizate
+                pentru fiecare clasă.
+              </p>
+              <p>
+                Pentru a accesa orarul unei clase, selectați clasa dorită din
+                lista disponibilă după ce introduceți parola.
+              </p>
+            </div>
+
+            <div
+              class="banner-text col-md-8 col-xs-6"
+              th:if="${not #lists.isEmpty(orar)}"
+            >
+              <h2>Orarul școlar</h2>
+              <p>
+                Pentru a accesa orarul complet al unei clase, selectați clasa
+                dorită din lista disponibilă. Această secțiune este concepută
+                pentru a facilita accesul rapid la programul zilnic, astfel
+                încât atât elevii, cât și părinții să fie mereu informați cu
+                privire la desfășurarea activităților educaționale.
+              </p>
+              <p>
+                Pentru eventuale modificări sau actualizări, vă recomandăm să
+                verificați periodic această secțiune.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="password-form">
+        <div class="row justify-content-center align-items-center">
+          <label for="password">Introduceți parola:</label>
+          <input type="password" id="password" />
+          <button  id="btnChcekOrarPassword">Submit</button>
+        </div>
+        <div class="row justify-content-center align-items-center">
+          <p id="error-message" style="color: red; visibility: hidden;">
+            Parolă incorectă!
+          </p>
+        </div>
+      </div>
+
+      <div id="protected-content">
+        <div
+          class="container d-flex flex-column justify-content-center align-items-center"
+          style="min-height: 80vh"
+        >
+          <div class="orarBtns"><form method="get">
+            <div class="row justify-content-center mt-4">
+              
+              <div class="col-6 col-md-4 text-center">
+                <button
+                  type="submit"
+                  name="ciclu"
+                  value="PRIMAR"
+                  id="btnCicluPrimar"
+                  class="button btnCiclu"
+                  th:classappend="${cicluSelectat == 'PRIMAR'} ? ' primary' : ''"
+                >
+                  Orare ciclul primar
+                </button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button
+                  type="submit"
+                  name="ciclu"
+                  value="GIMNAZIAL"
+                  id="btnCicluGimnazial"
+                  class="button btnCiclu"
+                  th:classappend="${cicluSelectat == 'GIMNAZIAL'} ? ' primary' : ''"
+                >
+                  Orare ciclul gimnazial
+                </button>
+              </div>
+              <div class="col-6 col-md-4 text-center dvClasaSelect">
+                
+                  <input
+                    type="hidden"
+                    name="ciclu"
+                    th:value="${cicluSelectat}"
+                  />
+                  <select
+                    id="clasa"
+                    name="clasa"
+                    class="form-select"
+                    onchange="this.form.submit()"
+                  >
+                    <option value="">Alege orar</option>
+                    <option
+                      th:each="c : ${clase}"
+                      th:value="${c.nume}"
+                      th:text="${c.nume}"
+                      th:selected="${c.nume == clasaSelectata}"
+                    ></option>
+                  </select>
+                
+              </div>
+           
+            </div>
+          </form>
+            <!-- Class selection -->
+            <div class="row justify-content-center mt-3"></div>
+          </div>
+          <div
+            class="container-fluid orar-container-emptyView"
+            th:if="${#lists.isEmpty(orar)}"
+          ></div>
+          <div
+            class="container-fluid orar-container"
+            th:if="${not #lists.isEmpty(orar)}"
+          >
+            <div class="row justify-content-center mt-4">
+              <div class="col-12">
+                <div><h4 th:text="${clasaSelectata}"></h4></div>
+                <div class="table-responsive">
+                  <table
+                    border="1"
+                    th:if="${not #lists.isEmpty(orar)}"
+                    class="table orar-table table-bordered table-responsive d-none d-md-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="thFirst"></th>
+                        <th class="text-dark">Luni</th>
+                        <th class="text-dark">Marți</th>
+                        <th class="text-dark">Miercuri</th>
+                        <th class="text-dark">Joi</th>
+                        <th class="text-dark">Vineri</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="ora : ${orarOre}">
+                        <td
+                          class="bg-info text-dark fw-bold"
+                          th:text="${ora}"
+                        ></td>
+                        <td th:each="zi : ${zile}">
+                          <span
+                            th:each="materie : ${orar}"
+                            th:if="${materie.ziua == zi and #strings.startsWith(materie.oraInceput, ora.substring(0,5))}"
+                            th:text="${materie.materie.nume}"
+                          >
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- Responsive Stacked View for Small Screens -->
+                  <div class="d-block d-md-none">
+                    <table class="table table-bordered orar-tableMin">
+                      <thead>
+                        <tr>
+                          <th
+                            class="fw-bold text-center"
+                            style="
+                              background-color: #3f6eaa !important;
+                              color: #fff;
+                            "
+                            colspan="3"
+                          >
+                            Ore
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="zi, stat: ${zile}">
+                          <td
+                            class="fw-bold text-center align-middle orarZiMin"
+                            rowspan="${#lists.size(orarOre)}"
+                            th:text="${zi}"
+                            th:style="'background-color: ' + ${colors[stat.index % 5]}"
+                          ></td>
+
+                          <td style="padding: 0px !important">
+                            <div
+                              th:each="ora, iter : ${orarOre}"
+                              class="d-flex flex-row align-items-center border-bottom gap-2"
+                            >
+                              <div
+                                class="fw-bold text-white text-center hour-block"
+                                th:text="${#strings.substring(ora, 0, 5)}"
+                              ></div>
+
+                              <span
+                                th:each="materie : ${orar}"
+                                th:if="${materie.ziua == zi and #strings.startsWith(materie.oraInceput, ora.substring(0,5))}"
+                                class="text-dark"
+                              >
+                                <span th:text="${materie.materie.nume}"></span>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader-ul footer-ului-->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="/assets/js/script.js"></script>
+   
+  </body>
+</html>

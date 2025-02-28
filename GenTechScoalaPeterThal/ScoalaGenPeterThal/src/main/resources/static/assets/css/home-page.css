@@ -1,0 +1,226 @@
+/* Secțiune Intro */
+
+.container-lines {
+    background-image: url("../images/Lines1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@media (max-width: 768px) {
+    .container-lines {
+        background-size: 160% 100%;
+    }
+}
+
+.home-page-title {
+    font-family: 'Tillana';
+    font-weight: 500;
+    align-items: center;
+    position: relative;
+    padding-top: 2vw;
+}
+
+.title-home-page {
+    font-size: clamp(40px, 4vw, 50px);
+    margin-bottom: -20px;
+}
+
+.subtitle-home-page {
+    font-size: clamp(60px, 4vw, 80px);
+    margin-left: 8%;
+}
+
+.citat-home-page {
+    font-family: 'Tillana';
+    text-align: center;
+    font-style: italic;
+    padding-left: 10vw;
+}
+
+/* Butoane link-uri */
+
+.rectangular1 {
+    background-image: url("../images/Banner-link1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 220px;
+}
+
+.rectangular2 {
+    background-image: url("../images/Banner-link2.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 260px;
+}
+
+.rectangular3 {
+    background-image: url("../images/Banner-link3.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 200px;
+}
+
+.rectangular1,
+.rectangular2,
+.rectangular3 {
+    margin-inline: 2vw;
+    box-shadow: -4px 5px 8px rgba(0, 0, 0, 20%);
+    transition: all 0.3s;
+    cursor: pointer;
+    border-radius: 38px;
+}
+
+
+
+.rectangular1:hover,
+.rectangular2:hover,
+.rectangular3:hover {
+    transform: scale(1.05);
+    box-shadow: -4px 5px 14px rgba(0, 0, 0, 20%);
+}
+
+.rectangular-title {
+    font-weight: 500;
+    font-size: clamp(0.9rem, 1.8vw, 1.5rem);
+    letter-spacing: 1px;
+    text-align: center;
+    padding-bottom: 2vw;
+    text-decoration: none;
+}
+
+.rectangular-link {
+    text-decoration: none;
+    color: #0A2E5C;
+}
+
+.pictograma-rectangular {
+    width: clamp(4.5rem, 10vw, 7rem);
+    position: relative;
+    margin-top: -10px;
+}
+
+.pictograma-education {
+    width: clamp(5.5rem, 12vw, 9rem);
+}
+
+.arrow-circle-up {
+    width: clamp(4rem, 7vw, 6rem);
+}
+
+/* Tags section */
+
+.rectangular0 {
+    background-size: 100% 100%;
+}
+
+.tags {
+    position: relative;
+    width: clamp(15rem, 28vw, 22rem);
+    top: 20px;
+    padding-right: 0;
+}
+
+@media (max-width: 992px) {
+    .tags {
+        top: 30px;
+    }
+
+    .rectangular1 {
+        min-height: 150px;
+    }
+
+    .rectangular2 {
+        min-height: 190px;
+    }
+
+    .rectangular3 {
+        min-height: 130px;
+    }
+
+    .pictograma-rectangular {
+        margin-bottom: 0;
+    }
+}
+
+
+
+@media (max-width: 448px){
+    .rectangular1,
+    .rectangular2,
+    .rectangular3 {
+        height: 200px !important;
+        min-width: 12rem;
+        margin: 1rem 2rem 1rem 2rem;
+    }
+
+         .tags {
+             visibility: hidden;
+         }
+}
+
+
+/* Banner galben*/
+
+.banner-alegere-scoala {
+    min-height: 420px;
+    background-color: #FFED89;
+    border-radius: 50px;
+    margin-bottom: 200px;
+}
+
+.titlu-sectiune-home-alegere {
+    font-weight: 500;
+    line-height: 40px;
+    letter-spacing: 1px;
+    padding-top: 2vw;
+}
+
+.text-container {
+    padding: 2vw;
+    padding-top: 0;
+}
+
+
+@media (max-width: 992px) {
+    .banner-alegere-scoala {
+        background-color: transparent !important;
+        /* Elimină fundalul */
+    }
+
+    .custom-card {
+        background-color: #FFED89;
+        padding: 2vw;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        min-width: 18rem;
+    }
+
+    .text-container {
+        padding: 2vw;
+    }
+
+    .custom-card img {
+        max-width: 60px;
+        height: auto;
+    }
+
+    .row.mt-5.justify-content-center {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col.col-4.col-sm-12 {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .custom-card-parent .col:nth-child(2) .custom-card {
+        padding-top: 20px;
+    }
+
+    .banner-alegere-scoala {
+        margin-bottom: -50px;
+    }
+
+}

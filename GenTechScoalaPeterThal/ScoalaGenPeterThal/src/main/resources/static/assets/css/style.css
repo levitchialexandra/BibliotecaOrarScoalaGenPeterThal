@@ -1,0 +1,19 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 140px;
+    color: #0A2E5C;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.navbar .nav-link.active {
+    background-color: #0A2E5C; 
+    color: white !important; 
+    
+  }

@@ -1,0 +1,298 @@
+body {
+
+    background-size: cover;
+}
+
+/* Banner Intro */
+.banner-intro {
+    background-image: url("../images/Banner-blue.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-top: clamp(1rem, 3vw, 2rem);
+    padding-bottom: clamp(1rem, 5vw, 2.8rem);
+}
+
+.banner-imagine {
+    max-width: 18rem;
+}
+
+.banner-text {
+    padding: 0 3vw;
+}
+
+.banner-text h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2rem);
+}
+
+.banner-text p {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+/* For small screens */
+@media (max-width: 768px) {
+    .banner-intro {
+        background-size: 160% 100%;
+    }
+
+    .banner-text {
+        padding: 5vw;
+        padding-top: 1vw;
+    }
+
+    .banner-imagine {
+        max-width: 14rem;
+    }
+}
+
+/* Password section */
+
+#protected-content {
+    display: none;
+}
+
+#password-form {
+    margin: 10vw;
+    color: #0A2E5C;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+#password-form label {
+    width: clamp(10rem, 26vw, 12rem);
+}
+
+#password-form input {
+    text-indent: 10px;
+}
+
+#password-form input, 
+#password-form button {
+    width: clamp(8rem, 26vw, 11rem);
+    margin: 1vw;
+    border-radius: 20px;
+    padding: 4px;
+    border: 1px solid #0A2E5C;
+    box-shadow: -3px 3px 4px rgb(0 0 0 / 20%);;
+}
+
+#password-form button {
+    cursor: pointer;
+    background-color: #FFED89;
+}
+
+#password-form #error-message {
+    width: clamp(9rem, 26vw, 11rem);
+    padding: 4px;
+}
+
+/* Tabel orar */
+
+.button,
+select {
+    padding: 5px;
+    border: 1px solid #0A2E5C;
+    color: #0A2E5C;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: -3px 3px 4px rgb(0 0 0 / 20%);;
+}
+
+
+.button:hover,
+select:hover {
+    transform: scale(1.05);
+    box-shadow: -3px 3px 6px rgba(0, 0, 0, 20%);
+}
+
+.primary {
+    background-color: #FFED89;
+}
+
+.secondary {
+    background-color: lightgoldenrodyellow;
+}
+
+select {
+    padding: 5px;
+}
+
+.orar-container-emptyView,
+.orar-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-size: 100% 100%;
+    min-height: 600px;
+    padding: 20px;
+}
+
+.orar-container-emptyView {
+    background-image: url("/assets/images/Banner-orar-desktop.png");
+    background-repeat: no-repeat;
+}
+
+.orar-container {
+    background-color: #E7B884;
+    border-radius: 25px;
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 20%);;
+}
+
+.orar-header {
+    background-color: #E7B884;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.orar-table th {
+    background-color: #E4FDB2;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.thFirst {
+    background-color: #3F6EAA !important;
+}
+
+.orar-table td,
+.orar-table th {
+    border: 1px solid #3F6EAA;
+    text-align: center;
+    padding: 10px;
+    width: 100px;
+    height: 70px !important;
+    vertical-align: middle;
+}
+
+.orar-table tbody td:first-child {
+    background-color: #B8D7FF !important;
+    font-weight: 500;
+}
+
+.orar-table {
+    width: 100%;
+    margin: auto;
+    min-height: 500px;
+    border-radius: 30px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.orarCicluSelection {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 50px;
+}
+
+.orarClasa {
+    width: 200px;
+    margin: auto;
+    padding: 30px;
+}
+
+.orarClasa select,
+.form-select {
+    text-align: center;
+    border-radius: 15px !important;
+    width: 200px;
+    margin: auto;
+    color: #0A2E5C;
+}
+
+.orarBtns {
+    width: 100%;
+    margin-top: 0px;
+}
+
+
+@media (max-width: 768px) {
+
+    .button,
+    select {
+        font-size: 12px !important;
+    }
+
+    .orar-container {
+        min-height: auto;
+        padding: 10px;
+    }
+
+    .orar-table td,
+    .orar-table th {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .orar-container-emptyView {
+        background-image: url("/assets/images/Banner-orar-mobil.png");
+        background-repeat: no-repeat;
+    }
+
+    .orarBtns {
+        width: 100%;
+
+    }
+
+    .orar-tableMin {
+        border-radius: 30px;
+
+        overflow: hidden;
+
+        border-collapse: separate;
+
+        border-spacing: 0;
+    }
+
+    .orarZiMin {
+        text-transform: uppercase;
+        writing-mode: sideways-lr;
+        text-orientation: upright;
+        white-space: nowrap;
+        padding: 10px;
+
+    }
+
+    .dvClasaSelect {
+        margin-top: 10px;
+    }
+
+    .hour-block {
+        background-color: #B8D7FF !important;
+        color: #0A2E5C !important;
+        width: 120px;
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    .imageCopii img {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+
+        .table-bordered>:not(caption)>*>* {
+            border: solid 2px #e7b884;
+        }
+
+}
+
+@media (max-width: 480px) {
+
+    .orar-tableMin {
+        border-radius: 20px;
+    }
+
+    .hour-block {
+        max-width: 50px;
+        display: flex;
+        align-self: stretch;
+        align-items: center;
+        padding-left: 5px;
+    }
+
+}

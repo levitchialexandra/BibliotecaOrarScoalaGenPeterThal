@@ -1,0 +1,109 @@
+.navbar {
+    background-color: #ffffff;
+    max-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2vw;
+}
+
+.nav-link {
+    text-align: center;
+    color: #0A2E5C;
+    font-family: 'Poppins' sans-serif;
+    align-content: center;
+    align-items: center;
+    font-size: calc(1rem + 0.3vw);
+    line-height: 24px;
+    font-weight: 500;
+    border: 2px solid #0A2E5C;
+    border-radius: 30px;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background-color: #0A2E5C;
+}
+
+.navbar-title{
+    font-family: 'Tillana';
+    font-weight: 500;
+    color: #0A2E5C;
+}
+
+.dropdown-menu {
+    border: 2px solid #0A2E5C;
+    border-radius: 0px 30px 30px 30px;
+    overflow: hidden;
+    padding: 0;
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu.show {
+        border-radius: 0px 0px 30px 30px !important;
+    }
+}
+
+.dropdown-menu[data-bs-popper] {
+    top: 93%;
+    left: 0;
+    margin-top: var(--bs-dropdown-spacer);
+}
+
+.nav-link.dropdown-toggle.show {
+    background-color: #0A2E5C;
+    color: #ffffff;
+    border-radius: 30px 30px 0px 0px;
+}
+
+/* Stilizare pentru fiecare element din dropdown */
+.dropdown-item {
+    color: #0A2E5C;
+    font-family: 'Poppins', sans-serif;
+    font-size: calc(1rem + 0.3vw);
+    line-height: 33px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    margin-left: 0px;
+}
+
+.dropdown-item.hover-mov:hover {
+    background-color: #AF9FF1;
+}
+
+.dropdown-item.hover-galben:hover {
+    background-color: #FFED89;
+}
+
+.dropdown-item.hover-roz:hover {
+    background-color: #FEAAD8;
+}
+.dropdown-item.hover-movActive {
+    background-color: #AF9FF1 !important;
+}
+
+.dropdown-item.hover-galbenActive {
+    background-color: #FFED89;
+}
+
+.dropdown-item.hover-rozActive {
+    background-color: #FEAAD8;
+}
+
+.dropdown-divider {
+    background-color: #0A2E5C;
+    margin: 0px 20px 0px 20px;
+}
+
+.navbar-toggler {
+    border: 2px solid #0A2E5C;
+  
+}
+

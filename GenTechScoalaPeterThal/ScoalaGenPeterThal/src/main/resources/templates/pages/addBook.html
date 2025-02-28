@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaugă Carte</title>
+
+<!-- Bootstrap and other CSS libraries -->
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet"
+    href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+<link href="/assets/css/bookListStyle.css" rel="stylesheet">
+<script type="text/javascript" charset="utf8"
+    src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="/assets/js/bookList.js"></script>
+<script src="/assets/js/loan.js"></script>
+<!-- Custom styles for layout -->
+<style>
+    .toggle-section {
+        display: none;
+    }
+    .visible {
+        display: block;
+    }
+	.btn{
+		margin-left:10px
+	}
+</style>
+</head>
+
+<body>
+
+<div class="container mt-5">
+	
+    <h1 class="text-center mb-4">Administare biblioteca <img src="/assets/images/LOGO1.2-removebg-preview.png" alt="Login Icon" style="width:60px; height: 60px;"></h1>
+	
+    <div class="position-fixed" style="top: 10px; right: 10px;">
+
+		<a href="/logout" class="btn btn-danger btn-sm"> <i
+			class="fas fa-sign-out-alt"></i> Logout
+		</a>
+	</div>
+    <div class="d-flex justify-content-center mb-4">
+        <button class="btn btn-primary mx-2" onclick="toggleSection('addBookForm')">Adauga Carte</button>
+        <button class="btn btn-secondary mx-2" onclick="toggleSection('booksTableDiv')">Vizualizare Carti</button>
+    </div>
+
+    <!-- Add Book Form -->
+    <div id="addBookForm" class="toggle-section ">
+        <form th:action="@{/pages/addBook}" th:object="${book}" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Titlu:</label>
+                <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Enter book title" required />
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-message text-danger"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="author" class="form-label">Autor:</label>
+                <input type="text" id="author" th:field="*{author}" class="form-control" placeholder="Enter book author" required />
+                <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="error-message text-danger"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="genre" class="form-label">Gen:</label>
+                <select id="genre" th:field="*{genre}" class="form-select" required>
+                    <option value="">Select Genre</option>
+                    <option th:each="g : ${genres}" th:value="${g.id}" th:text="${g.name}"></option>
+                </select>
+                <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="error-message text-danger"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="publicationYear" class="form-label">Anul publicarii:</label>
+                <input type="number" id="publicationYear" th:field="*{publicationYear}" class="form-control" placeholder="Enter publication year" required />
+                <div th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}" class="error-message text-danger"></div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Books Table -->
+    <div id="booksTableDiv" class="toggle-section">
+        <form id="searchForm" method="get">
+            <div class="container-fluid mt-4" style="padding: 10px !important">
+                <div class="table-responsive">
+                    <table id="booksTable" class="table table-bordered table-striped" style="width:100% !important">
+                        <thead>
+                            <tr>
+                                <th>Titlu</th>
+                                <th>Autor</th>
+                                <th>Gen</th>
+                                <th>Anul publicării</th>
+                                <th>Disponibilitate</th>
+                                <th>Actiuni</th>
+                            </tr>
+                            <tr >
+                                <td >
+                                  <input type="text" id="titleSearch" class="form-control rounded-pill" placeholder="🔍 Căutare după titlu">
+                                </td>
+                                <td>
+                                  <input type="text" id="authorSearch" class="form-control rounded-pill" placeholder="✍️ Căutare după autor">
+                                </td>
+                                <td>
+                                  <input type="text" id="genreSearch" class="form-control rounded-pill" placeholder="📚 Căutare după gen">
+                                </td>
+                                <td>
+                                  <input type="number" id="yearSearch" class="form-control rounded-pill" placeholder="📅 Căutare după an">
+                                </td>
+                                <td> <select id="availabilityFilter" class="form-control rounded-pill">
+                                  <option value="">📌 Toate</option>
+                                  <option value="Disponibil">✅ Disponibil</option>
+                                  <option value="Împrumutat">📖 Împrumutat</option>
+                                  <option value="Termen">⏳ Termen depășit</option>
+                                </select></td>
+                                <td></td>
+                              </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Book entries will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal pentru împrumut -->
+<div class="modal fade" id="loanModal" tabindex="-1" aria-labelledby="loanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loanModalLabel">Împrumut carte</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="loanForm">
+                    <input type="hidden" id="bookId" name="bookId"> 
+
+                    <div class="mb-3">
+                        <label for="studentSearch" class="form-label">Nume elev</label>
+                        <input type="text" class="form-control" id="studentSearch" placeholder="Caută elev..." autocomplete="off">
+                        <input type="hidden" id="studentId" name="studentId">
+                        <ul id="studentResults" class="list-group"></ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="studentEmail" name="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Adresă</label>
+                        <input type="text" class="form-control" id="studentAddress" name="address" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Număr de telefon</label>
+                        <input type="text" class="form-control" id="studentPhone" name="phone" required>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label for="returnDate" class="form-label">Data returnării</label>
+                        <input type="date" class="form-control" id="returnDate" name="returnDate" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Confirmă împrumutul</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to toggle sections -->
+<script>
+    function toggleSection(sectionId) {
+        // Hide both sections first
+        document.getElementById('addBookForm').classList.remove('visible');
+        document.getElementById('booksTableDiv').classList.remove('visible');
+
+        // Show the selected section
+        document.getElementById(sectionId).classList.add('visible');
+    }
+</script>
+
+</body>
+</html>

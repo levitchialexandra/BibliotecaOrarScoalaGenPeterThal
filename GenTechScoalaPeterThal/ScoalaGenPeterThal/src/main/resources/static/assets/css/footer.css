@@ -1,0 +1,236 @@
+.footer {
+  position: relative;
+  background: linear-gradient(to bottom, #2C4E87, #0A2E5C);
+  display: flex;
+  padding:clamp(0.6rem, 3vw, 1.6rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  overflow: hidden;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-family: 'Tillana';
+  font-weight: 500;
+  padding-left: 2vw;
+}
+
+.footer-text-scoala {
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  line-height: 2;
+}
+
+.footer-text-peter-thal {
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  line-height: 0.8;
+}
+
+.footer-logo {
+  width: clamp(4.2rem, 12vw, 10rem);
+}
+
+
+/* Social */
+@media (min-width: 992px) {
+  .social-links {
+    height: 100%;
+  }
+}
+
+.social-links a {
+  padding-left: auto;
+  margin-top: 2vw;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.8rem, 2vw, 1.8rem);
+  text-decoration: none;
+}
+
+.social-links a img {
+  width: clamp(1.3rem, 3vw, 2rem);
+}
+
+.facebook-link {
+  color: #63D784;
+}
+
+.instagram-link {
+  color: #FEAAD8;
+}
+
+.blog-link {
+  color: #AF9FF1;
+}
+
+.termeni-si-conditii {
+  color:#fff;
+  font-size: clamp(0.7rem, 1.4vw, 1rem);
+  text-decoration: none;
+  padding: 10px 10px;
+}
+
+
+/* Contact */
+.container-cards {
+  background: linear-gradient(to bottom, #3F6EAA, #2C4E87);
+  position: relative;
+  border-radius: 100% 100% 0 0;
+  height: clamp(4rem, 8vw, 6rem);
+}
+
+.flip-card {
+  width: clamp(7rem, 18vw, 13rem);
+  height: clamp(5rem, 13vw, 9rem);
+  max-width: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+  margin-inline: 2vw;
+  position: relative;
+  margin-bottom: 1.5vw;
+  top: -7vw;
+  color: #0A2E5C;
+  font-weight: 500;
+  border-radius: 30%;
+}
+
+.flip-card-suna-ne {
+  top: -9vw;
+}
+
+@media (min-width: 992px) {
+  .flip-card {
+    top: -4rem;
+  }
+  .flip-card-suna-ne {
+    top: -6rem;
+  }
+}
+
+.flip-card img {
+  width: clamp(2rem, 7vw, 5rem);
+  display: block;
+}
+
+.flip-card-email img{
+  width: clamp(2.5rem, 8vw, 5.5rem);
+  padding-bottom: 0;
+}
+
+.container-cards p {
+  text-align: center;
+  word-wrap: break-word;
+  font-size: clamp(0.7rem, 1.4vw, 1.2rem);
+  margin: 0 auto;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 30%;
+  box-shadow: -8px 10px 5px rgb(0 0 0 / 20%);
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-email-front,
+.flip-card-email-back,
+.flip-card-suna-ne-front,
+.flip-card-suna-ne-back,
+.flip-card-adresa-front,
+.flip-card-adresa-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30%;
+}
+
+.flip-card-email-front {
+  background-color: #AF9FF1;
+}
+
+.flip-card-email-back {
+  background-color: #AF9FF1;
+  transform: rotateY(180deg);
+}
+
+.flip-card-adresa-front {
+  background-color: #E4FDB2;
+}
+
+.flip-card-adresa-back {
+  background-color: #E4FDB2;
+  transform: rotateY(180deg);
+}
+
+.flip-card-suna-ne-front {
+  background-color: #FEAAD8;
+}
+
+.flip-card-suna-ne-back {
+  background-color: #FEAAD8;
+  transform: rotateY(180deg);
+}
+
+button{
+  background-color: inherit;
+  color: #0A2E5C ;
+  border: none;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+/* Extra large screens */
+/* @media (min-width: 1201px) {
+  .flip-card {
+    width: 16vw;
+    height: 11vw;
+  }
+} */
+
+/* Small screens */
+/* @media (max-width: 480px) {
+  .flip-card {
+    width: 40vw;
+    margin-top: -20px;
+  }
+
+  .flip-card-suna-ne {
+    margin-top: -60px;
+    margin-bottom: 75px;
+  }
+} */
+
+
+/* Cookie implementate */
+
+#cookie-banner {
+  display: none;
+  /* Inițial ascuns */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Stil buton */
+#cookie-banner button {
+  background: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}

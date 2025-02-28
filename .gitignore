@@ -1,0 +1,6 @@
+# Ignore Eclipse metadata folder
+.metadata/
+.metadata/**
+
+# Ignore Eclipse core resources history
+.metadata/plugins/org.eclipse.core.resources/history/

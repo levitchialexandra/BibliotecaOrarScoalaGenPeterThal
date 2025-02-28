@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/contact.css" />
+    <script defer src="/assets/js/script.js"></script>
+    <script defer src="/assets/js/contactMap.js"></script>
+  </head>
+
+  <body>
+    <!-- Loader-ul navbar-ului  -->
+    <div id="navbar-container"></div>
+    <canvas id="fireworks"></canvas>
+
+    <div class="contact">
+      <div class="titlu-contact">
+        <h1>Nu ezita să ne <br />contactezi!</h1>
+      </div>
+      <div class="wheel">
+        <div class="">
+          <div class="div-adresa forma" onclick="copyToClipboard(this)">
+            <div class="text-adresa">
+              <h2>Treci pe la noi!</h2>
+              <p
+                class="text-to-copy"
+                data-value="Adresă 
+            copiată!"
+              >
+                Ne găsești chiar aici: <br/>
+                Strada Izvor Nr. 10
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="" >
+          <div class="div-email forma" onclick="copyToClipboard(this)">
+            <div class="text-email">
+              <h2>Email</h2>
+
+              <button
+                onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=rasnovgenerala2@yahoo.com', '_blank')"
+              >
+                <p>
+                  rasnovgenerala2 <br/>
+                  @yahoo.com
+                </p>
+              </button>
+              <div>
+                <img class="bunny" src="/assets/images/e-mail-2.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="div-telefon forma" onclick="copyToClipboard(this)">
+            <div class="text-telefon">
+              <h2>Sună-ne!</h2>
+              <p class="text-to-copy" data-value="Număr copiat!">
+                0268 257 399
+              </p>
+              <div>
+                <img class="bear" src="/assets/images/bear.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container main-container">
+      <!-- Harta -->
+      <div class="harta">
+        <h2>Localizare</h2>
+        <div>
+          <input
+            type="checkbox"
+            id="cbTraseu"
+            onclick="initMap()"
+            text="Arata traseu"
+          />
+          <label for="cbTraseu">Arată traseu</label>
+        </div>
+        <div id="map"></div>
+
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLCbrD85V1qvECrFB4aguyjes18fVZsbQ"
+          async
+          defer
+        ></script>
+      </div>
+    </div>
+
+    <!-- Loader-ul footer-ului-->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/contactArtificii.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 
+    <img src="/assets/images/locatie.png" class="img-fluid img-adresa" alt="">
+    <img src="/assets/images/telefon.png" class="img-fluid img-telefon" alt="">
+    <img src="/assets/images/email.png" class="img-fluid img-email" alt="">
+    -->
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ScoalaGenPeterThalApplication<ScoalaGenPeterThal>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ro.scoalaPeterThal.ScoalaGenPeterThalApplication",
+            "projectName": "ScoalaGenPeterThal",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
