@@ -14,7 +14,8 @@
     />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/orar.css" />
-    <script defer src="/assets/js/orar.js"></script>
+   
+    <script defer src="/assets/js/adminorar.js"></script>
   </head>
 
   <body>
@@ -92,7 +93,7 @@
                 <div class="table-responsive">
                   <table
                     border="1"
-                    th:if="${not #lists.isEmpty(orar)}"
+                    
                     class="table orar-table table-bordered table-responsive d-none d-md-table"
                   >
                     <thead>
@@ -113,27 +114,22 @@
                         ></td>
 
                         <td th:each="zi : ${zile}">
-                          <form th:action="@{/orar/update}" method="post">
-                            <input
-                              type="hidden"
-                              th:field="*{ora}"
-                              th:value="${ora}"
-                            />
-                            <input
-                              type="hidden"
-                              th:field="*{zi}"
-                              th:value="${zi}"
-                            />
-                            <select name="materieId">
+                         
+                          
+                            <select th:attr="data-ora=${ora.substring(0,5)}, data-zi=${zi}, data-clasa=${clasaSelectata}"
+                              name="materieId"
+                              style="font-size: 10.5px !important"
+                              onchange="updateOrar(this)"
+                            >
                               <option value="">-- Selectați materia --</option>
                               <option
                                 th:each="materie : ${materii}"
                                 th:value="${materie.id}"
                                 th:text="${materie.nume}"
-                                th:selected="${materie.id == (materieSelectata != null ? materieSelectata.id : null)}"
+                                th:selected="${materiiSelectate!=null and materiiSelectate[ora.substring(0,5) + '-' + zi] != null
+                                  and materiiSelectate[ora.substring(0,5) + '-' + zi] == materie.id}"
                               ></option>
                             </select>
-                            <button type="submit">Salvează</button>
                           </form>
                         </td>
                       </tr>

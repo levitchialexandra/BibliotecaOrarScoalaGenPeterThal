@@ -11,6 +11,7 @@ import basics.orar.Clasa;
 import basics.orar.Orar;
 import basics.orar.Clasa.Ciclu;
 import repository.ClasaRepository;
+import repository.MaterieRepository;
 import repository.OrarRepository;
 
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,8 @@ public class OrarController {
 
     @Autowired
     ClasaRepository clasaRepository;
+
+   
 
     @GetMapping("/pages/orar")
     public String afiseazaOrar(@RequestParam(required = false, defaultValue = "PRIMAR") Ciclu ciclu,
@@ -55,7 +58,7 @@ public class OrarController {
         model.addAttribute("cicluSelectat", ciclu.name());
 
         model.addAttribute("clasaSelectata", clasa);
-
+       
         return "pages/orar";
         
     }

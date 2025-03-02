@@ -9,4 +9,5 @@ import basics.orar.Clasa.Ciclu;
 
 public interface ClasaRepository extends JpaRepository<Clasa, Long> {
     List<Clasa> findByCiclu(Ciclu ciclu);
+    Clasa findByNume(String nume);
 }

@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const passwordForm = document.querySelector('#password-form');
   const errorMessage = document.querySelector('#error-message');
   const passwordInput = document.querySelector('#password');
-
+ 
   try{
   protectedContent.style.display = 'none';
-  }
-  catch(e){}
+ 
   //btnChcekOrarPassword
   const submitBtn = document.getElementById('btnChcekOrarPassword');
 
   submitBtn.addEventListener('click', checkPassword);
+
   async function checkPassword() {
     const passwordValue = passwordInput.value;
 
@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .querySelector('#password-form button')
     .addEventListener('click', checkPassword);
+  }
+  catch(e){}
 });
 
 
