@@ -24,14 +24,14 @@ public class AdminController {
     @GetMapping("/pages/login")
     public String loginPage() {
 
-        return "pages/login";
+        return "pages/adminlogin";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
 
-        return "redirect:/pages/login";
+        return "redirect:/pages/adminlogin";
     }
 
     @PostMapping("/pages/login")
@@ -41,11 +41,11 @@ public class AdminController {
             AppUser appUser = loginUser(username, password);
             session.setAttribute("sessionUser", appUser);
 
-            return "redirect:/pages/addBook";
+            return "redirect:/pages/admindashboard";
 
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
-            return "pages/login";
+            return "pages/adminlogin";
         }
     }
 

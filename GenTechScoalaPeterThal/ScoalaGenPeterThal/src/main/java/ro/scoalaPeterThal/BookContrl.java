@@ -48,27 +48,27 @@ public class BookContrl {
 		return genreRepository.findAll();
 	}
 
-	@GetMapping("/pages/addBook")
+	@GetMapping("/pages/admindashboard")
 	public String showAddBookForm(Model model) {
 		if (!CheckIfUserIsLoggedIn())
 			return "redirect:/pages/login";
 		model.addAttribute("book", new Book());
 		model.addAttribute("genres", genreRepository.findAll());
-		return "pages/addBook";
+		return "pages/admindashboard";
 	}
 
-	@PostMapping("/pages/addBook")
+	@PostMapping("/pages/admindashboard")
 	public String addBook(@Valid @ModelAttribute Book book, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 
 			model.addAttribute("genres", genreRepository.findAll());
-			return "pages/addBook";
+			return "pages/admindashboard";
 		}
 		bookRepository.save(book);
 		model.addAttribute("genres", genreRepository.findAll());
 		model.addAttribute("book", new Book());
-		return "pages/addBook";
+		return "pages/admindashboard";
 	}
 
 	@DeleteMapping("/deleteBook/{id}")

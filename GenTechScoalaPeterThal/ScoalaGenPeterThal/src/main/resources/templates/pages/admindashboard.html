@@ -61,7 +61,7 @@
 
     <!-- Add Book Form -->
     <div id="addBookForm" class="toggle-section ">
-        <form th:action="@{/pages/addBook}" th:object="${book}" method="post">
+        <form th:action="@{/pages/admindashboard}" th:object="${book}" method="post">
             <div class="mb-3">
                 <label for="title" class="form-label">Titlu:</label>
                 <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Enter book title" required />
