@@ -41,6 +41,7 @@
     <div id="navbar-container"></div>
 
     <div class="main-container">
+      
       <div class="container">
         <form id="searchForm" method="get">
           <div class="container-fluid mt-4" style="padding: 10px !important">
@@ -48,6 +49,7 @@
               <table id="booksTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th id="thExtraDetails" style="background-color: transparent !important;"></th>
                     <th class="titlu">Titlu</th>
                     <th class="autor">Autor</th>
                     <th class="gen">Gen</th>
@@ -55,6 +57,7 @@
                     <th class="disponibilitate">Disponibilitate</th>
                   </tr>
                   <tr>
+                    <td id="tdExtraDetails" style="max-width:25px"></td>
                     <td>
                       <input
                         type="text"
@@ -71,7 +74,7 @@
                         placeholder="✍️ Căutare după autor"
                       />
                     </td>
-                    <td>
+                    <td style="max-width:150px !important">
                       <input
                         type="text"
                         id="genreSearch"
@@ -79,7 +82,7 @@
                         placeholder="📚 Căutare după gen"
                       />
                     </td>
-                    <td>
+                    <td style="max-width:150px !important">
                       <input
                         type="number"
                         id="yearSearch"
@@ -87,7 +90,7 @@
                         placeholder="📅 Căutare după an"
                       />
                     </td>
-                    <td>
+                    <td style="max-width:150px">
                       <select
                         id="availabilityFilter"
                         class="form-control rounded-pill"

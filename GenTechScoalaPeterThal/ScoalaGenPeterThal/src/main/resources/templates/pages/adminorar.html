@@ -23,47 +23,42 @@
 
     <div class="main-container">
       <div class="banner-intro">
-        <div class="container">
-         
-        </div>
+        <div class="container"></div>
       </div>
-      
-     
 
       <div>
         <div
           class="container d-flex flex-column justify-content-center align-items-center"
           style="min-height: 80vh"
         >
-          <div class="orarBtns"><form method="get">
-            <div class="row justify-content-center mt-4">
-              
-              <div class="col-6 col-md-4 text-center">
-                <button
-                  type="submit"
-                  name="ciclu"
-                  value="PRIMAR"
-                  id="btnCicluPrimar"
-                  class="button btnCiclu"
-                  th:classappend="${cicluSelectat == 'PRIMAR'} ? ' primary' : ''"
-                >
-                  Orare ciclul primar
-                </button>
-              </div>
-              <div class="col-6 col-md-4 text-center">
-                <button
-                  type="submit"
-                  name="ciclu"
-                  value="GIMNAZIAL"
-                  id="btnCicluGimnazial"
-                  class="button btnCiclu"
-                  th:classappend="${cicluSelectat == 'GIMNAZIAL'} ? ' primary' : ''"
-                >
-                  Orare ciclul gimnazial
-                </button>
-              </div>
-              <div class="col-6 col-md-4 text-center dvClasaSelect">
-                
+          <div class="orarBtns">
+            <form method="get">
+              <div class="row justify-content-center mt-4">
+                <div class="col-6 col-md-4 text-center">
+                  <button
+                    type="submit"
+                    name="ciclu"
+                    value="PRIMAR"
+                    id="btnCicluPrimar"
+                    class="button btnCiclu"
+                    th:classappend="${cicluSelectat == 'PRIMAR'} ? ' primary' : ''"
+                  >
+                    Orare ciclul primar
+                  </button>
+                </div>
+                <div class="col-6 col-md-4 text-center">
+                  <button
+                    type="submit"
+                    name="ciclu"
+                    value="GIMNAZIAL"
+                    id="btnCicluGimnazial"
+                    class="button btnCiclu"
+                    th:classappend="${cicluSelectat == 'GIMNAZIAL'} ? ' primary' : ''"
+                  >
+                    Orare ciclul gimnazial
+                  </button>
+                </div>
+                <div class="col-6 col-md-4 text-center dvClasaSelect">
                   <input
                     type="hidden"
                     name="ciclu"
@@ -83,19 +78,14 @@
                       th:selected="${c.nume == clasaSelectata}"
                     ></option>
                   </select>
-                
+                </div>
               </div>
-           
-            </div>
-          </form>
+            </form>
             <!-- Class selection -->
             <div class="row justify-content-center mt-3"></div>
           </div>
-         
-          <div
-            class="container-fluid orar-container"
-           
-          >
+
+          <div class="container-fluid orar-container">
             <div class="row justify-content-center mt-4">
               <div class="col-12">
                 <div><h4 th:text="${clasaSelectata}"></h4></div>
@@ -116,31 +106,39 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="ora : ${orarOre}">
-                            <td class="bg-info text-dark fw-bold" th:text="${ora}"></td>
-                            
-                            <td th:each="zi : ${zile}">
-                                <form th:action="@{/orar/update}" method="post">
-                                    <input type="hidden" th:field="*{ora}" th:value="${ora}" />
-                                    <input type="hidden" th:field="*{zi}" th:value="${zi}" />
-                                    <select name="materieId">
-                                        <option value="">-- Selectați materia --</option>
-                                        <option 
-                                            th:each="materie : ${materii}" 
-                                            th:value="${materie.id}" 
-                                            th:text="${materie.nume}"
-                                            th:selected="${materie.id == (materieSelectata != null ? materieSelectata.id : null)}">
-                                        </option>
-                                    </select>
-                                    <button type="submit">Salvează</button>
-                                </form>
-                            </td>
-                        </tr>
+                      <tr th:each="ora : ${orarOre}">
+                        <td
+                          class="bg-info text-dark fw-bold"
+                          th:text="${ora}"
+                        ></td>
+
+                        <td th:each="zi : ${zile}">
+                          <form th:action="@{/orar/update}" method="post">
+                            <input
+                              type="hidden"
+                              th:field="*{ora}"
+                              th:value="${ora}"
+                            />
+                            <input
+                              type="hidden"
+                              th:field="*{zi}"
+                              th:value="${zi}"
+                            />
+                            <select name="materieId">
+                              <option value="">-- Selectați materia --</option>
+                              <option
+                                th:each="materie : ${materii}"
+                                th:value="${materie.id}"
+                                th:text="${materie.nume}"
+                                th:selected="${materie.id == (materieSelectata != null ? materieSelectata.id : null)}"
+                              ></option>
+                            </select>
+                            <button type="submit">Salvează</button>
+                          </form>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
-
-                  
-                  
                 </div>
               </div>
             </div>
@@ -153,7 +151,5 @@
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   
-   
   </body>
 </html>

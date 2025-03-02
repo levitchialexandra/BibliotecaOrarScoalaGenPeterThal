@@ -37,7 +37,8 @@
         display: block;
     }
 	.btn{
-		margin-left:10px
+		margin:2px;
+        float: left;;
 	}
 </style>
 </head>
@@ -112,24 +113,49 @@
                                 <th>Actiuni</th>
                             </tr>
                             <tr >
-                                <td >
-                                  <input type="text" id="titleSearch" class="form-control rounded-pill" placeholder="🔍 Căutare după titlu">
-                                </td>
                                 <td>
-                                  <input type="text" id="authorSearch" class="form-control rounded-pill" placeholder="✍️ Căutare după autor">
-                                </td>
-                                <td>
-                                  <input type="text" id="genreSearch" class="form-control rounded-pill" placeholder="📚 Căutare după gen">
-                                </td>
-                                <td>
-                                  <input type="number" id="yearSearch" class="form-control rounded-pill" placeholder="📅 Căutare după an">
-                                </td>
-                                <td> <select id="availabilityFilter" class="form-control rounded-pill">
-                                  <option value="">📌 Toate</option>
-                                  <option value="Disponibil">✅ Disponibil</option>
-                                  <option value="Împrumutat">📖 Împrumutat</option>
-                                  <option value="Termen">⏳ Termen depășit</option>
-                                </select></td>
+                                    <input
+                                      type="text"
+                                      id="titleSearch"
+                                      class="form-control rounded-pill"
+                                      placeholder="🔍 Căutare după titlu"
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      id="authorSearch"
+                                      class="form-control rounded-pill"
+                                      placeholder="✍️ Căutare după autor"
+                                    />
+                                  </td>
+                                  <td style="max-width:150px !important">
+                                    <input
+                                      type="text"
+                                      id="genreSearch"
+                                      class="form-control rounded-pill"
+                                      placeholder="📚 Căutare după gen"
+                                    />
+                                  </td>
+                                  <td style="max-width:150px !important">
+                                    <input
+                                      type="number"
+                                      id="yearSearch"
+                                      class="form-control rounded-pill"
+                                      placeholder="📅 Căutare după an"
+                                    />
+                                  </td>
+                                  <td style="max-width:150px">
+                                    <select
+                                      id="availabilityFilter"
+                                      class="form-control rounded-pill"
+                                    >
+                                      <option value="">📌 Toate</option>
+                                      <option value="Disponibil">✅ Disponibil</option>
+                                      <option value="Împrumutat">📖 Împrumutat</option>
+                                      <option value="Termen">⏳ Termen depășit</option>
+                                    </select>
+                                  </td>
                                 <td></td>
                               </tr>
                         </thead>

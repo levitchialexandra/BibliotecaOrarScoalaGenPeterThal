@@ -248,7 +248,7 @@ public class BookContrl {
 				return "Împrumutat până la " + loan.getReturnDate();
 			}
 			else{
-				return "Termen depasit! Data limită " + loan.getReturnDate();
+				return "Termen depășit! Data limită " + loan.getReturnDate();
 			}
 		}
 		return "Disponibil";

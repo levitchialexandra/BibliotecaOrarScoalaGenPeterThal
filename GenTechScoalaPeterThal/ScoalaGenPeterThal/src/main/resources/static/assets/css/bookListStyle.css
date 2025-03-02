@@ -7,13 +7,18 @@
 	width: 100%;
 	box-sizing: border-box;
 	padding: 8px;
-	margin: 5px 0;
+	
+	font-size:13px;
 }
 
 #booksTable tbody td {
 	padding: 12px 8px;
 }
-
+#availabilityFilter{
+	padding-top:8px;
+	padding-bottom: 8px;
+	font-size:13px;
+}
 .table-container {
 	max-height: 80vh;
 }
