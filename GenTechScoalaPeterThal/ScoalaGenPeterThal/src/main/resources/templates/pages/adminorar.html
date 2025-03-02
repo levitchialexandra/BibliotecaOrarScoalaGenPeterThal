@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/orar.css" />
+    <script defer src="/assets/js/orar.js"></script>
+  </head>
+
+  <body>
+    <!-- Loader-ul navbar-ului  -->
+    <div id="navbar-container"></div>
+
+    <div class="main-container">
+      <div class="banner-intro">
+        <div class="container">
+         
+        </div>
+      </div>
+      
+     
+
+      <div>
+        <div
+          class="container d-flex flex-column justify-content-center align-items-center"
+          style="min-height: 80vh"
+        >
+          <div class="orarBtns"><form method="get">
+            <div class="row justify-content-center mt-4">
+              
+              <div class="col-6 col-md-4 text-center">
+                <button
+                  type="submit"
+                  name="ciclu"
+                  value="PRIMAR"
+                  id="btnCicluPrimar"
+                  class="button btnCiclu"
+                  th:classappend="${cicluSelectat == 'PRIMAR'} ? ' primary' : ''"
+                >
+                  Orare ciclul primar
+                </button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button
+                  type="submit"
+                  name="ciclu"
+                  value="GIMNAZIAL"
+                  id="btnCicluGimnazial"
+                  class="button btnCiclu"
+                  th:classappend="${cicluSelectat == 'GIMNAZIAL'} ? ' primary' : ''"
+                >
+                  Orare ciclul gimnazial
+                </button>
+              </div>
+              <div class="col-6 col-md-4 text-center dvClasaSelect">
+                
+                  <input
+                    type="hidden"
+                    name="ciclu"
+                    th:value="${cicluSelectat}"
+                  />
+                  <select
+                    id="clasa"
+                    name="clasa"
+                    class="form-select"
+                    onchange="this.form.submit()"
+                  >
+                    <option value="">Alege orar</option>
+                    <option
+                      th:each="c : ${clase}"
+                      th:value="${c.nume}"
+                      th:text="${c.nume}"
+                      th:selected="${c.nume == clasaSelectata}"
+                    ></option>
+                  </select>
+                
+              </div>
+           
+            </div>
+          </form>
+            <!-- Class selection -->
+            <div class="row justify-content-center mt-3"></div>
+          </div>
+         
+          <div
+            class="container-fluid orar-container"
+           
+          >
+            <div class="row justify-content-center mt-4">
+              <div class="col-12">
+                <div><h4 th:text="${clasaSelectata}"></h4></div>
+                <div class="table-responsive">
+                  <table
+                    border="1"
+                    th:if="${not #lists.isEmpty(orar)}"
+                    class="table orar-table table-bordered table-responsive d-none d-md-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="thFirst"></th>
+                        <th class="text-dark">Luni</th>
+                        <th class="text-dark">Marți</th>
+                        <th class="text-dark">Miercuri</th>
+                        <th class="text-dark">Joi</th>
+                        <th class="text-dark">Vineri</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ora : ${orarOre}">
+                            <td class="bg-info text-dark fw-bold" th:text="${ora}"></td>
+                            
+                            <td th:each="zi : ${zile}">
+                                <form th:action="@{/orar/update}" method="post">
+                                    <input type="hidden" th:field="*{ora}" th:value="${ora}" />
+                                    <input type="hidden" th:field="*{zi}" th:value="${zi}" />
+                                    <select name="materieId">
+                                        <option value="">-- Selectați materia --</option>
+                                        <option 
+                                            th:each="materie : ${materii}" 
+                                            th:value="${materie.id}" 
+                                            th:text="${materie.nume}"
+                                            th:selected="${materie.id == (materieSelectata != null ? materieSelectata.id : null)}">
+                                        </option>
+                                    </select>
+                                    <button type="submit">Salvează</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader-ul footer-ului-->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+   
+  </body>
+</html>

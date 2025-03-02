@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const errorMessage = document.querySelector('#error-message');
   const passwordInput = document.querySelector('#password');
 
+  try{
   protectedContent.style.display = 'none';
+  }
+  catch(e){}
   //btnChcekOrarPassword
   const submitBtn = document.getElementById('btnChcekOrarPassword');
 
