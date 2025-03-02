@@ -36,10 +36,12 @@ $(document).ready(function () {
 		"pagingType": "full_numbers",
 		"processing": true,
 		"language": {
-			"emptyTable": "No records available",
+			"emptyTable": "Nu sunt înregistrări disponibile",
 			"info": "Showing _START_ to _END_ of _TOTAL_ entries",
 			"infoFiltered": "(filtered from _MAX_ total entries)",
 			"lengthMenu": "Show _MENU_ entries",
+			"processing": "Se cauta...",
+			"zeroRecords": "Nu s-au găsit înregistrări corespunzătoare"
 		},
 		"dom": '<"H"lfr>t<"F"ip>',
 		"ajax": {

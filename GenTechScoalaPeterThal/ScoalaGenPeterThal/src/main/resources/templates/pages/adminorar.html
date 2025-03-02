@@ -21,8 +21,10 @@
   <body>
     <!-- Loader-ul navbar-ului  -->
     <div id="navbar-container"></div>
-
-    <div class="main-container">
+    <button onclick="window.location.href='/pages/admindashboard'" class="btn btn-primary">
+      Pagina Principală
+  </button>
+    <div class="main-container" style="margin-top:0px;">
       <div class="banner-intro">
         <div class="container"></div>
       </div>
@@ -85,7 +87,10 @@
             <!-- Class selection -->
             <div class="row justify-content-center mt-3"></div>
           </div>
-
+          <div
+          class="container-fluid orar-container-emptyView"
+          th:if="${clasaSelectata==null or clasaSelectata==''}"
+        ></div>
           <div class="container-fluid orar-container">
             <div class="row justify-content-center mt-4">
               <div class="col-12">
@@ -93,7 +98,7 @@
                 <div class="table-responsive">
                   <table
                     border="1"
-                    
+                    th:if="${clasaSelectata!=null and clasaSelectata!=''}"
                     class="table orar-table table-bordered table-responsive d-none d-md-table"
                   >
                     <thead>
@@ -135,6 +140,7 @@
                       </tr>
                     </tbody>
                   </table>
+                 
                 </div>
               </div>
             </div>

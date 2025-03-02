@@ -21,8 +21,18 @@ public class Loan {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student; 
 	
+	@Column(nullable = false)
+	private Boolean Returned;
 	public Long getId() {
 		return id;
+	}
+
+	public Boolean getReturned() {
+		return Returned;
+	}
+
+	public void setReturned(Boolean returned) {
+		Returned = returned;
 	}
 
 	public void setId(Long id) {

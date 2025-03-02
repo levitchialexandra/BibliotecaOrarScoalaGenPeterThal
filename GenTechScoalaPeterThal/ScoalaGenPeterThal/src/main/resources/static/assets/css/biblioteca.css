@@ -16,105 +16,118 @@ th {
     margin-bottom: 20px;
 }
 
-#booksTable {
-    width: 100% !important;
-    border-collapse: collapse;
-    margin-top: 20px;
+div.dataTables_processing {
+
+    z-index: 9999 !important;
+    background-color: #fbfafa;
+    border-radius: 20px;
 }
 
-#booksTable th, #booksTable td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
+    #booksTable {
+        width: 100% !important;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #booksTable th,
+    #booksTable td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
 
 
 
-#booksTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+    #booksTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-input[type="text"], input[type="number"], select {
-    width: 100%;
-    padding: 8px;
-    margin: 4px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin: 4px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
-    outline: none;
-    border-color: #4CAF50;
-}
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+        outline: none;
+        border-color: #4CAF50;
+    }
 
-.input-group {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+    .input-group {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-.input-group div {
-    flex: 1 1 22%;
-}
+    .input-group div {
+        flex: 1 1 22%;
+    }
 
-.input-group div input, .input-group div select {
-    width: 100%;
-}
+    .input-group div input,
+    .input-group div select {
+        width: 100%;
+    }
 
-.table-container {
-    margin-top: 20px;
-}
-
-
-.sortButton {
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    color: #007bff;
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.sortButton:hover {
-    color: #0056b3;
-    transform: scale(1.05); 
-}
-
-.sortButton:focus {
-    outline: none;
-}
+    .table-container {
+        margin-top: 20px;
+    }
 
 
-.sortButton i {
-    font-size: 18px;
-    transition: transform 0.3s ease;
-}
+    .sortButton {
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        color: #007bff;
+        cursor: pointer;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-.sortButton.sorted-asc i {
-    transform: rotate(180deg);  
-}
+    .sortButton:hover {
+        color: #0056b3;
+        transform: scale(1.05);
+    }
 
-.sortButton.sorted-desc i {
-    transform: rotate(0deg);  
-}
+    .sortButton:focus {
+        outline: none;
+    }
 
-.titlu{
-    background-color: #E4FDB2 !important;
-}
 
- .autor{
-    background-color: #B8D7FF !important;
- }
+    .sortButton i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
 
- .gen{
-    background-color: #FFC8E6 !important;
- }
+    .sortButton.sorted-asc i {
+        transform: rotate(180deg);
+    }
 
- .anul-publicarii{
-    background-color: #FFE3C9 !important;
- }
+    .sortButton.sorted-desc i {
+        transform: rotate(0deg);
+    }
 
- .disponibilitate{
-    background-color: #CEC2FF !important;
- }
+    .titlu {
+        background-color: #E4FDB2 !important;
+    }
+
+    .autor {
+        background-color: #B8D7FF !important;
+    }
+
+    .gen {
+        background-color: #FFC8E6 !important;
+    }
+
+    .anul-publicarii {
+        background-color: #FFE3C9 !important;
+    }
+
+    .disponibilitate {
+        background-color: #CEC2FF !important;
+    }

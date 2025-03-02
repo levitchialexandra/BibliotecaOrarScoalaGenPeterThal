@@ -244,6 +244,9 @@ public class BookContrl {
 	public String getAvailabilityStatus(Book book) {
 
 		for (Loan loan : book.getLoans()) {
+			if(loan.getReturned()){
+				return "Disponibil";
+			}
 			if (loan.getReturnDate().isAfter(LocalDate.now())) {
 				return "Împrumutat până la " + loan.getReturnDate();
 			}

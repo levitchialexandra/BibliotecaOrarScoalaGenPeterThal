@@ -19,3 +19,14 @@ function updateOrar(selectElement){
     })
     .catch(error => console.error('Error:', error));
 }
+function printTable() {
+    const table = document.querySelector('table'); 
+    const printWindow = window.open('', '', 'height=400,width=600');
+    printWindow.document.write('<html><head><title>Printare orar</title></head><body>');
+    printWindow.document.write(table.outerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
+// Function to preview the table content (optional)

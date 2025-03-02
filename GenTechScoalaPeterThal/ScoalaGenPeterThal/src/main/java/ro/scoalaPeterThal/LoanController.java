@@ -90,8 +90,10 @@ public class LoanController {
 
             Optional<Loan> loanOptional = loanRepository.findByBook(book);
             if (loanOptional.isPresent()) {
+                System.out.println("Carte gasita!");
                 Loan loan = loanOptional.get();
                 loan.setReturnDate(LocalDate.now());
+                loan.setReturned(true);
                 loanRepository.save(loan);
             }
 
