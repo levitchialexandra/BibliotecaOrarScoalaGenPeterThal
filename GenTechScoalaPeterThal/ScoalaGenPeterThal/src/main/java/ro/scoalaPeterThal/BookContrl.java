@@ -52,8 +52,7 @@ public class BookContrl {
 	public String showAddBookForm(Model model) {
 		if (!CheckIfUserIsLoggedIn())
 			return "redirect:/pages/login";
-		model.addAttribute("book", new Book());
-		model.addAttribute("genres", genreRepository.findAll());
+		
 		return "pages/admindashboard";
 	}
 
@@ -90,7 +89,7 @@ public class BookContrl {
 		return sessionUser != null;
 	}
 
-	@GetMapping("/booksAjax")
+/* 	@GetMapping("/booksAjax")
 	@ResponseBody
 	public Map<String, Object> getBooks(@RequestParam(required = false) String title,
 			@RequestParam int draw, @RequestParam(required = false) String author,
@@ -180,7 +179,7 @@ public class BookContrl {
 
 		return response;
 	}
-
+*/
 	@GetMapping("/booksAjaxWithAvailability")
 	@ResponseBody
 	public Map<String, Object> getBooksWithAvailability(@RequestParam(value = "title", required = false) String title,
@@ -203,58 +202,45 @@ public class BookContrl {
 			genId = (genres != null && !genres.isEmpty()) ? genres.get(0).getId() : null;
 		}
 
-		List<Book> books = searchBooksByFilter(title, author, genId, publicationYear, searchValue, pageable);
-		List<BookDTO> bookDTOs = new ArrayList<>();
-
-		for (Book book : books) {
-			BookDTO bookDTO = new BookDTO();
-			var avabStat = getAvailabilityStatus(book);
-			System.out.println(avabStat);
-			if (availability == "" || (avabStat.equalsIgnoreCase(availability)
-					|| avabStat.contains(availability))) {
-				bookDTO.setId(book.getId());
-				bookDTO.setTitle(book.getTitle());
-				bookDTO.setAuthor(book.getAuthor());
-				bookDTO.setGenre(book.getGenre());
-				bookDTO.setPublicationYear(book.getPublicationYear());
-				bookDTO.setAvailability(getAvailabilityStatus(book));
-				bookDTOs.add(bookDTO);
-			}
-
-		}
-
-		long totalFilteredRecords = bookDTOs.size();
+		List<Book> books = searchBooksByFilter(title, author, genId, publicationYear, searchValue, availability, pageable);
+		
+System.out.println(books.get(0).getBookStatus());
+		//long totalFilteredRecords = bookDTOs.size();
 		long totalRecords = bookRepository.count();
 
 		Map<String, Object> response = new HashMap<>();
 		response.put("draw", draw);
 		response.put("recordsTotal", totalRecords);
-		response.put("recordsFiltered", totalFilteredRecords);
-		response.put("data", bookDTOs);
+		//response.put("recordsFiltered", totalFilteredRecords);
+		response.put("data", books);
 
 		return response;
 	}
 
 	public List<Book> searchBooksByFilter(String title, String author, Long genreId, Integer publicationYear,
-			String searchValue, Pageable pageable) {
+			String searchValue, String status, Pageable pageable) {
 
-		return bookRepository.findBooksByCriteria(title, author, genreId, publicationYear, searchValue, pageable);
+		return bookRepository.findBooksByCriteria(title, author, genreId, publicationYear, searchValue, status,pageable);
 	}
 
-	public String getAvailabilityStatus(Book book) {
+	
 
-		for (Loan loan : book.getLoans()) {
-			if(loan.getReturned()){
-				return "Disponibil";
-			}
-			if (loan.getReturnDate().isAfter(LocalDate.now())) {
-				return "Împrumutat până la " + loan.getReturnDate();
-			}
-			else{
-				return "Termen depășit! Data limită " + loan.getReturnDate();
-			}
-		}
-		return "Disponibil";
+	public String getAvailabilityStatusByLoan(Optional<Loan> loans) {
+
+	return	loans.map(loan -> {
+            System.err.println(loan.getBook().getTitle() + " " + loan.getBook().getId() + " " + loan.getReturned());
+
+            if (loan.getReturned()) {
+                return "Disponibil";
+            }
+            if (loan.getReturnDate().isAfter(LocalDate.now())) {
+                return "Împrumutat până la " + loan.getReturnDate();
+            } else {
+                return "Termen depășit! Data limită " + loan.getReturnDate();
+            }
+        }).orElse("Disponibil");
+		
+		
 	}
 
 	public List<BookDTO> filterBooksByAvailability(List<BookDTO> bookDTOs, String filterType) {

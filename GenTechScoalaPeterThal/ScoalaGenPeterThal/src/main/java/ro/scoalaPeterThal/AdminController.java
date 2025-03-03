@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalTime;
 
 import basics.AppUser;
+import basics.Book;
 import basics.orar.Clasa;
 import basics.orar.Clasa.Ciclu;
 import basics.orar.Materie;
 import basics.orar.Orar;
 import jakarta.servlet.http.HttpSession;
 import repository.ClasaRepository;
+import repository.GenreRepository;
 import repository.MaterieRepository;
 import repository.OrarRepository;
 import repository.UserRepository;
@@ -42,6 +44,8 @@ public class AdminController {
     ClasaRepository clasaRepository;
     @Autowired
     MaterieRepository materieRepository;
+    @Autowired
+    GenreRepository genreRepository;
 
     @GetMapping("/pages/login")
     public String loginPage() {
@@ -54,6 +58,15 @@ public class AdminController {
         session.invalidate();
 
         return "redirect:/pages/adminlogin";
+    }
+
+    @GetMapping("/pages/adminbiblioteca")
+    public String adminBiblioteca(Model model) {
+        if (!CheckIfUserIsLoggedIn())
+            return "redirect:/pages/login";
+        model.addAttribute("book", new Book());
+        model.addAttribute("genres", genreRepository.findAll());
+        return "/pages/adminbiblioteca";
     }
 
     @PostMapping("/pages/login")
@@ -98,7 +111,7 @@ public class AdminController {
 
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         List<String> distinctOrarOre = defaultOre;
-        
+
         model.addAttribute("colors", colors);
         model.addAttribute("zile", zile);
         model.addAttribute("orarOre", distinctOrarOre);
@@ -113,7 +126,7 @@ public class AdminController {
             String key = orarEntry.getOraInceput().format(timeFormatter) + "-" + orarEntry.getZiua();
             materiiSelectate.put(key, orarEntry.getMaterie().getId());
             model.addAttribute("materiiSelectate", materiiSelectate);
-            
+
         }
 
         return "pages/adminorar";
@@ -131,18 +144,17 @@ public class AdminController {
             LocalTime oraInceput = LocalTime.parse(ora);
             List<Orar> orar = orarRepository.findByClasaNumeAndZiuaAndOraInceput(clasa, zi, oraInceput);
             Materie materie = materieRepository.findById(materieId).orElseThrow(null);
-           
+
             if (!orar.isEmpty()) {
                 Orar crtOrar = orar.get(0);
                 crtOrar.setMaterie(materie);
                 orarRepository.save(crtOrar);
-            }
-            else{
-                Orar crtOrar=new Orar();
+            } else {
+                Orar crtOrar = new Orar();
                 crtOrar.setOraInceput(oraInceput);
                 crtOrar.setOraSfarsit(oraInceput.plusMinutes(50));
                 crtOrar.setMaterie(materie);
-                Clasa cls=clasaRepository.findByNume(clasa);
+                Clasa cls = clasaRepository.findByNume(clasa);
                 crtOrar.setClasa(cls);
                 crtOrar.setZiua(zi);
                 orarRepository.save(crtOrar);
@@ -174,16 +186,21 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
-        
     }
+
+    public Boolean CheckIfUserIsLoggedIn() {
+        AppUser sessionUser = (AppUser) session.getAttribute("sessionUser");
+
+        return sessionUser != null;
+    }
+
     List<String> defaultOre = List.of(
-    "08:00 - 08:50",
-    "09:00 - 09:50",
-    "10:00 - 10:50",
-    "11:00 - 11:50",
-    "12:00 - 12:50",
-    "13:00 - 13:50",
-    "14:00 - 14:50"
-);
+            "08:00 - 08:50",
+            "09:00 - 09:50",
+            "10:00 - 10:50",
+            "11:00 - 11:50",
+            "12:00 - 12:50",
+            "13:00 - 13:50",
+            "14:00 - 14:50");
 
 }

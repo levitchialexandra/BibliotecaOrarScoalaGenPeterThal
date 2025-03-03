@@ -19,14 +19,29 @@
   </head>
 
   <body>
-    <!-- Loader-ul navbar-ului  -->
+    
     <div id="navbar-container"></div>
-    <button onclick="window.location.href='/pages/admindashboard'" class="btn btn-primary">
-      Pagina Principală
-  </button>
+
     <div class="main-container" style="margin-top:0px;">
-      <div class="banner-intro">
-        <div class="container"></div>
+      <div class="banner-intro" style="padding:0px">
+        <div>
+          <h1 class="text-center mb-4">
+            Administare orar
+            <img
+              src="/assets/images/LOGO1.2-removebg-preview.png"
+              alt="Login Icon"
+              style="width: 60px; height: 60px"
+            />
+          </h1>
+        </div>
+        <div class="position-fixed" style="top: 10px; right: 30px;">
+          <button onclick="window.location.href='/pages/admindashboard'" class="btn btn-primary btn-sm">
+              Pagina Principală
+          </button>
+      <a href="/logout" class="btn btn-danger btn-sm"> <i
+        class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
       </div>
 
       <div>

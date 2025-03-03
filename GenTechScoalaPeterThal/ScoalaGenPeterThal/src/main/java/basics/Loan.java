@@ -22,17 +22,28 @@ public class Loan {
     private Student student; 
 	
 	@Column(nullable = false)
-	private Boolean Returned;
+	private Boolean returned;
+	
+	@Column(nullable = false)
+    private String loanStatus;
+	public String getLoanStatus() {
+		return loanStatus;
+	}
+
+	public void setLoanStatus(String loanStatus) {
+		this.loanStatus = loanStatus;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public Boolean getReturned() {
-		return Returned;
+		return returned;
 	}
 
-	public void setReturned(Boolean returned) {
-		Returned = returned;
+	public void setReturned(Boolean rned) {
+	returned = rned;
 	}
 
 	public void setId(Long id) {

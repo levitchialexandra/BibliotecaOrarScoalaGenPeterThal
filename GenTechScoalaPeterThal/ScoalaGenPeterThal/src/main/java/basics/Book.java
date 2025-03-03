@@ -27,21 +27,26 @@ public class Book {
 	@ManyToOne
 	@NotNull(message = "{book.genre.required}")
 	private Genre genre;
-	@OneToMany(mappedBy = "book")
-    private List<Loan> loans;
 	
-	public List<Loan> getLoans() {
-		return loans;
-	}
-
-	public void setLoans(List<Loan> loans) {
-		this.loans = loans;
-	}
-
+	@Column(nullable = false)
+	private String bookStatus;
 	public Long getId() {
 		return id;
 	}
+	
+	public String getBookStatus() {
+		return bookStatus;
+	}
+	public void setBookStatus(String bookStatus) {
+		this.bookStatus = bookStatus;
+	}
 
+	@PrePersist
+    public void setDefaultStatus() {
+        if (bookStatus == null) {
+            bookStatus = "Disponibil"; 
+        }
+    }
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -78,6 +83,7 @@ public class Book {
 		this.genre = genre;
 	}
 
+	
 
 
 }

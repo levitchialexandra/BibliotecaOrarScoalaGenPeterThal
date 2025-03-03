@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,18 +71,32 @@ public class LoanController {
             newStudent.setPhone(request.getStudentPhone());
             return studentRepository.save(newStudent);
         });
-                
+                String loanStatus="Împrumutat până la "+request.getReturnDate();
         Loan loan = new Loan();
+        book.setBookStatus(loanStatus);
         loan.setBook(book);
         loan.setStudent(student);
         loan.setLoanDate(LocalDate.now());
         loan.setReturnDate(request.getReturnDate());
+        loan.setReturned(false);
+        loan.setLoanStatus(loanStatus);
 
         loanRepository.save(loan);
 
         return ResponseEntity.ok("Împrumut salvat cu succes");
     }
+ @Scheduled(cron = "0 0 0 * * ?") 
+    public void checkOverdueLoans() {
+        List<Loan> overdueLoans = loanRepository.findOverdueLoans(LocalDate.now());
 
+        for (Loan loan : overdueLoans) {
+            Book book = loan.getBook();
+            String loanStatus="Termen depășit! Data limită " + loan.getReturnDate();
+            book.setBookStatus(loanStatus);
+            loan.setLoanStatus(loanStatus);
+            bookRepository.save(book);
+        }
+    }
     @PostMapping("/returnBook/{id}")
     public ResponseEntity<String> returnBook(@PathVariable Long id) {
         Optional<Book> bookOptional = bookRepository.findById(id);
@@ -90,10 +105,12 @@ public class LoanController {
 
             Optional<Loan> loanOptional = loanRepository.findByBook(book);
             if (loanOptional.isPresent()) {
-                System.out.println("Carte gasita!");
+               
                 Loan loan = loanOptional.get();
                 loan.setReturnDate(LocalDate.now());
                 loan.setReturned(true);
+                loan.setLoanStatus("Disponibil");
+                book.setBookStatus("Disponibil");
                 loanRepository.save(loan);
             }
 

@@ -49,12 +49,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     document.getElementById("download").addEventListener("click", function () {
       const element = document.getElementById('tbOrar');
+      const isTbHidden=element.classList.contains("d-none");
+
+      element.classList.remove("d-none");
       html2pdf(element, {
         filename: 'orar.pdf',
         margin: 10,
         html2canvas: { scale: 4 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
       });
+      if(isTbHidden){
+        setTimeout(() => {
+          element.classList.add("d-none");
+        }, 50);
+       
+      }
     });
     function removeAccess() {
       localStorage.removeItem('hasAccess');

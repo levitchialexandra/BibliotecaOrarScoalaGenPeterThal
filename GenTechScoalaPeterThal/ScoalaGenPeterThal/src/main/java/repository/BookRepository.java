@@ -34,6 +34,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 		       "(:genreId IS NULL OR b.genre.id = :genreId) AND " +
 		       "(:publicationYear IS NULL OR CAST(b.publicationYear AS string) LIKE CONCAT('%', :publicationYear, '%')) AND " +
 		       "(:searchValue IS NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :searchValue, '%')) OR LOWER(b.author) LIKE LOWER(CONCAT('%', :searchValue, '%'))) ")
-    List<Book> findBooksByCriteria(String title, String author, Long genreId, Integer publicationYear,
+    List<Book> findBooksByCriteria1(String title, String author, Long genreId, Integer publicationYear,
                                    String searchValue, Pageable pageable);
+
+								   @Query("SELECT b FROM Book b WHERE (:title IS NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :title, '%'))) AND " +
+       "(:author IS NULL OR LOWER(b.author) LIKE LOWER(CONCAT('%', :author, '%'))) AND " +
+       "(:genreId IS NULL OR b.genre.id = :genreId) AND " +
+       "(:publicationYear IS NULL OR CAST(b.publicationYear AS string) LIKE CONCAT('%', :publicationYear, '%')) AND " +
+       "(:searchValue IS NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :searchValue, '%')) OR LOWER(b.author) LIKE LOWER(CONCAT('%', :searchValue, '%'))) AND " +
+	   "(:bookStatus IS NULL OR LOWER(CAST(b.bookStatus AS string)) LIKE LOWER(CONCAT('%', :bookStatus, '%'))) ")
+List<Book> findBooksByCriteria(String title, String author, Long genreId, Integer publicationYear,
+                               String searchValue, String bookStatus, Pageable pageable);
 }

@@ -7,7 +7,7 @@ var cols = [{
 }, {
 	"data": "publicationYear"
 }, {
-	"data": "availability",
+	"data": "bookStatus",
 	"orderable": false
 }];
 
@@ -19,7 +19,7 @@ var extraColsDetails = [{
 	"defaultContent": '',
 	"searchable": false
 }];
-var isAdmin = window.location.href.toLowerCase().indexOf("admindashboard") >= 0;
+var isAdmin = window.location.href.toLowerCase().indexOf("adminbiblioteca") >= 0;
 $(document).ready(function () {
 
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
 				if (isAdmin) {
 					json.data.forEach(function (item) {
 						item.actions = '<button class="btn btn-danger btn-sm delete-btn" data-id="' + item.id + '">Șterge</button>';
-						if (item.availability === "Disponibil") {
+						if (item.bookStatus === "Disponibil") {
 							item.actions += '<button class="btn btn-success btn-sm borrow-btn" data-id="' + item.id + '" data-title="' + item.title + '">Împrumută</button>';
 						} else {
 							item.actions += '<button class="btn btn-secondary btn-sm return-btn " data-id="' + item.id + '">Restituie</button>';
@@ -187,7 +187,7 @@ function adjustTable() {
 		return;
 	}
 	
-		table.columns([1, 2, 3, 4, 5]).visible(!isMobile);
+		table.columns([2, 3, 4, 5]).visible(!isMobile);
 	
 }
 function adjustTableHeight() {
