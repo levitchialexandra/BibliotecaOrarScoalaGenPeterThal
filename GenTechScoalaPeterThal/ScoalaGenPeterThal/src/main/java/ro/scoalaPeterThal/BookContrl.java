@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import repository.BookRepository;
 import repository.GenreRepository;
@@ -56,18 +57,20 @@ public class BookContrl {
 		return "pages/admindashboard";
 	}
 
-	@PostMapping("/pages/admindashboard")
-	public String addBook(@Valid @ModelAttribute Book book, BindingResult result, Model model) {
+	@PostMapping("/pages/adminbiblioteca")
+	public String addBook(@Valid @ModelAttribute Book book, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
 
 			model.addAttribute("genres", genreRepository.findAll());
-			return "pages/admindashboard";
+			return "pages/adminbiblioteca";
 		}
+		book.setDefaultStatus();
 		bookRepository.save(book);
 		model.addAttribute("genres", genreRepository.findAll());
 		model.addAttribute("book", new Book());
-		return "pages/admindashboard";
+		redirectAttributes.addFlashAttribute("successMessage", "Cartea a fost adăugată cu succes!");
+		return "pages/adminbiblioteca";
 	}
 
 	@DeleteMapping("/deleteBook/{id}")

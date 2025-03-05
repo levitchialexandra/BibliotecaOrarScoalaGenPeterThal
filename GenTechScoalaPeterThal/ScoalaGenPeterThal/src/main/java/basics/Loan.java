@@ -37,7 +37,12 @@ public class Loan {
 	public Long getId() {
 		return id;
 	}
-
+	@PrePersist
+    public void setDefaultStatus() {
+        if (loanStatus == null) {
+            loanStatus = "Disponibil"; 
+        }
+    }
 	public Boolean getReturned() {
 		return returned;
 	}
