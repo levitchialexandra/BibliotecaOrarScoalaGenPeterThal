@@ -57,7 +57,7 @@ public class AdminController {
     public String logout(HttpSession session) {
         session.invalidate();
 
-        return "redirect:/pages/adminlogin";
+        return "redirect:/pages/login";
     }
 
     @GetMapping("/pages/adminbiblioteca")
