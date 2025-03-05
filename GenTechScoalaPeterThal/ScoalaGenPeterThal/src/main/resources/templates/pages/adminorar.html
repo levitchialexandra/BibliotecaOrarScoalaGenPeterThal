@@ -32,16 +32,18 @@
               alt="Login Icon"
               style="width: 60px; height: 60px"
             />
-          </h1>
+            <div class="" style="top: 10px; right: 30px;float:right">
+              <button onclick="window.location.href='/pages/admindashboard'" class="btn btn-primary btn-sm">
+                  Pagina Principală
+              </button>
+          <a href="/logout" class="btn btn-danger btn-sm"> <i
+            class="fas fa-sign-out-alt"></i> Logout
+          </a>
         </div>
-        <div class="position-fixed" style="top: 10px; right: 30px;">
-          <button onclick="window.location.href='/pages/admindashboard'" class="btn btn-primary btn-sm">
-              Pagina Principală
-          </button>
-      <a href="/logout" class="btn btn-danger btn-sm"> <i
-        class="fas fa-sign-out-alt"></i> Logout
-      </a>
-    </div>
+          </h1>
+         
+        </div>
+        
       </div>
 
       <div>
@@ -104,15 +106,17 @@
           </div>
           <div
           class="container-fluid orar-container-emptyView"
-          th:if="${clasaSelectata==null or clasaSelectata==''}"
+          th:if="${(clasaSelectata==null or clasaSelectata=='')}"
         ></div>
-          <div class="container-fluid orar-container">
+          <div class="container-fluid orar-container" 
+          th:if="${clasaSelectata!=null and clasaSelectata!=''}">
             <div class="row justify-content-center mt-4">
               <div class="col-12">
                 <div><h4 th:text="${clasaSelectata}"></h4></div>
                 <div class="table-responsive">
                   <table
                     border="1"
+
                     th:if="${clasaSelectata!=null and clasaSelectata!=''}"
                     class="table orar-table table-bordered table-responsive d-none d-md-table"
                   >

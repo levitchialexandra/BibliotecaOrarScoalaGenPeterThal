@@ -66,7 +66,7 @@ public class AdminController {
             return "redirect:/pages/login";
         model.addAttribute("book", new Book());
         model.addAttribute("genres", genreRepository.findAll());
-        return "/pages/adminbiblioteca";
+        return "pages/adminbiblioteca";
     }
 
     @PostMapping("/pages/login")
