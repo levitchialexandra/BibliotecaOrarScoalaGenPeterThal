@@ -207,8 +207,8 @@ public class BookContrl {
 
 		List<Book> books = searchBooksByFilter(title, author, genId, publicationYear, searchValue, availability, pageable);
 		
-System.out.println(books.get(0).getBookStatus());
-		//long totalFilteredRecords = bookDTOs.size();
+
+		
 		long totalRecords = bookRepository.count();
 
 		Map<String, Object> response = new HashMap<>();
